@@ -88,7 +88,8 @@ AUC<-c(rfauc,nbauc,svmauc)
 Accuracy<-c(rfdata$accuracy,nbdata$accuracy,svmdata$accuracy)
 Sensitivity<-c(rfdata$sensitivity,nbdata$sensitivity,svmdata$sensitivity)
 Specificity<-c(rfdata$specificity,nbdata$specificity,svmdata$specificity)
-data.frame(Methods,Accuracy,Sensitivity,Specificity,AUC)
+F1Score <- c(rfdata$F1score,nbdata$F1Score,svmdata$F1Score)
+data.frame(Methods,Accuracy,Sensitivity,Specificity,AUC,F1Score)
 
 
 
