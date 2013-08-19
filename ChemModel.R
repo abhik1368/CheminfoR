@@ -1,7 +1,7 @@
 ###################################################################################
 #### Loading a smiles dataset and using rcdk and machine learning packages     ####
-#### to build a classification model and print respective statistical measures ####
-#### for the test dataset.                                                     ####
+#### to build classification modelS and print respective statistical measures  ####
+#### and ROC curve for the test dataset.                                       ####
 ###################################################################################
 
 #loading different libraries
