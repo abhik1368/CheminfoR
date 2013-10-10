@@ -31,7 +31,7 @@ dataset<-cbind(cmp.finger,dat1$V3,dat1$V2)
 colnames(dataset)[168]<-"IDs"
 colnames(dataset)[167]<-"Outcome"
 
-## Make a random train and test set
+## Make a random train and test set 80% and 20%
 ind<-sample(2,nrow(dataset),replace=TRUE,prob=c(0.8,0.2))
 trainset<-dataset[ind==1,]
 testset<-dataset[ind==2,]
