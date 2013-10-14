@@ -39,7 +39,7 @@ testset<-dataset[ind==2,]
 ## Modeling with three algorithm Naive Bayes, Random Forest and SVM 
 rf_model<-randomForest(trainset[1:166],trainset$Outcome,ntree=500,proximity=TRUE)
 nb_model<-naiveBayes(trainset[1:166],trainset$Outcome)
-svm_model<-ksvm(as.matrix(trainset[1:166]),as.matrix(trainset$Outcome),data=trainset,type="C-svc",C=100,scaled=c(),prob.model=TRUE)
+svm_model<-ksvm(as.matrix(trainset[1:166]),as.matrix(trainset$Outcome),data=trainset,type="C-svc",C=100,scaled=TRUE,prob.model=TRUE)
 
 #For Naive Bayes model
 predict_nb<-predict(nb_model,newdata=testset,type="raw")
