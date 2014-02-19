@@ -1,7 +1,7 @@
 ###################################################################################
 #### Loading a smiles dataset and using rcdk and machine learning packages     ####
-#### to build a classification model and print respective statistical measures ####
-#### for the test dataset.                                                     ####
+#### to build classification modelS and print respective statistical measures  ####
+#### and ROC curve for the test dataset.                                       ####
 ###################################################################################
 
 #loading different libraries
@@ -31,7 +31,7 @@ dataset<-cbind(cmp.finger,dat1$V3,dat1$V2)
 colnames(dataset)[168]<-"IDs"
 colnames(dataset)[167]<-"Outcome"
 
-## Make a random train and test set
+## Make a random train and test set 80% and 20%
 ind<-sample(2,nrow(dataset),replace=TRUE,prob=c(0.8,0.2))
 trainset<-dataset[ind==1,]
 testset<-dataset[ind==2,]
@@ -39,7 +39,7 @@ testset<-dataset[ind==2,]
 ## Modeling with three algorithm Naive Bayes, Random Forest and SVM 
 rf_model<-randomForest(trainset[1:166],trainset$Outcome,ntree=500,proximity=TRUE)
 nb_model<-naiveBayes(trainset[1:166],trainset$Outcome)
-svm_model<-ksvm(as.matrix(trainset[1:166]),as.matrix(trainset$Outcome),data=trainset,type="C-svc",C=100,scaled=c(),prob.model=TRUE)
+svm_model<-ksvm(as.matrix(trainset[1:166]),as.matrix(trainset$Outcome),data=trainset,type="C-svc",C=100,scaled=TRUE,prob.model=TRUE)
 
 #For Naive Bayes model
 predict_nb<-predict(nb_model,newdata=testset,type="raw")
@@ -88,7 +88,8 @@ AUC<-c(rfauc,nbauc,svmauc)
 Accuracy<-c(rfdata$accuracy,nbdata$accuracy,svmdata$accuracy)
 Sensitivity<-c(rfdata$sensitivity,nbdata$sensitivity,svmdata$sensitivity)
 Specificity<-c(rfdata$specificity,nbdata$specificity,svmdata$specificity)
-data.frame(Methods,Accuracy,Sensitivity,Specificity,AUC)
+F1Score <- c(rfdata$F1score,nbdata$F1Score,svmdata$F1Score)
+data.frame(Methods,Accuracy,Sensitivity,Specificity,AUC,F1Score)
 
 
 
