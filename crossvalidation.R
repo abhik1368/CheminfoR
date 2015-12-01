@@ -36,7 +36,7 @@ for (i in 1:k){
     cv.test <- train [subset,]
 
     #Change the model accordingly with your preference and see which model performs better
-    fit <- randomForest(x=cv.train[1:166],y= cv.train$Outcome,ntree<-500)
+    fit <- randomForest(x=cv.train[1:166],y= cv.train$Outcome,ntree = 500)
     prediction <- predict (fit,newdata= cv.test[1:166],type<-"prob")
     pred.rf<-prediction(prediction[,2],cv.test$Outcome)
     err.vect[i]<-performance(pred.rf,"auc")@y.values[[1]]
